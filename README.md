@@ -9,6 +9,7 @@ A simple and fast tool for tape reading.
 config.json中配置自选股代码和是否报警
 
 |字段|描述|
+|---|---|
 |index|指数（默认报警）|
 |selection|自选股（可配置报警）|
 |extra|他选股（默认不报警）|
