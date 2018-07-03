@@ -13,12 +13,16 @@ class SingleStock:
         self.volume = 0
         self.amount = 0.0
         self.pre_fluc = 0.0
-    def set(self, name, pre, price, volume, amount):
+        self.high = 0.0
+        self.low = 0.0
+    def set(self, name, pre, price, high, low, volume, amount):
         self.name = name
         self.pre = pre
         # self.pre_price = self.price
         self.pre_fluc = self.cal_fluctuation()
         self.price = price
+        self.high = high
+        self.low = low
         self.volume = volume
         self.amount = amount
     def get_cur_price(self):
@@ -39,12 +43,16 @@ class SingleStock:
     def cal_fluctuation(self):
         return (self.price - self.pre) / self.pre
     def output(self):
-        print('%s%-6s\t%s%-6s\t%spre: %s\tnow: %s%s\tfluc: %.2f\t%svol: %14s\tamount: %.0f' % (\
+        print('%s%-6s\t%s%-6s\t%spre: %s\tnow: %s%s\t%sfluc: %s%.2f\t%shigh: %s%s\t%slow: %s%s\t%svol: %s%12s\t%samount: %s%.0f' % (\
             fg(15), self.code,\
             fg(214), self.name,\
             fg(15), str(self.pre),\
-            fg(self.coloring()), str(self.price), self.cal_fluctuation() * 100,\
-            fg(15), self.volume, self.amount\
+            fg(self.coloring()), str(self.price),\
+            fg(15), fg(self.coloring()), self.cal_fluctuation() * 100,\
+            fg(15), fg(4), str(self.high),\
+            fg(15), fg(4), str(self.low),\
+            fg(15), fg(132), self.volume,\
+            fg(15), fg(132), self.amount\
         ))
 
 class Alarm:
@@ -65,6 +73,8 @@ def monit(dic, alarm, make_warn):
             df.loc[0]['name'],\
             float(df.loc[0]['pre_close']),\
             float(df.loc[0]['price']),\
+            float(df.loc[0]['high']),\
+            float(df.loc[0]['low']),\
             int(df.loc[0]['volume']),\
             float(df.loc[0]['amount']),\
         )
