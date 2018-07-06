@@ -18,4 +18,4 @@ config.json中配置自选股代码和是否报警
 
 运行`$ python3 tape_viewer.py`
 
-![](http://p2q6d37qm.bkt.clouddn.com/18-6-28/67087950.jpg)
+![](http://p2q6d37qm.bkt.clouddn.com/18-7-6/18491045.jpg)
